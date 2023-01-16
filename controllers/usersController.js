@@ -1,7 +1,4 @@
-
-//DELETE to remove user by its _id
 //BONUS: Remove a user's associated thoughts when deleted.
-
 const { User } = require('../models')
 
 module.exports = {
@@ -38,13 +35,24 @@ module.exports = {
     //PUT to update a user by its _id
     update: async function (req, res) {
         try {
-            const user = await User.findOneAndUpdate
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.id },
+                //Sends updated version of information
+                req.body, { new: true })
+            res.json(user, 'User updated!')
         } catch (err) {
             res.status(500).json(err)
         }
-
+    },
+    //DELETE to remove user by its _id
+    delete: async function (req, res) {
+        try {
+            const result = await User.findByIdAndDelete(
+                { _id: req.params.id },
+                req.body, { new: true })
+            res.json(result, 'User deleted!')
+        } catch (err) {
+            res.status(500).json(err)
+        }
     }
-
-
-
 }
