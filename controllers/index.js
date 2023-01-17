@@ -1,5 +1,7 @@
-const socialController = require('./socialController')
+const usersController = require('./usersController')
+const thoughtsController = require('./thoughtsController')
 
 module.exports = {
-    socialController,
+    usersController,
+    thoughtsController,
 }
