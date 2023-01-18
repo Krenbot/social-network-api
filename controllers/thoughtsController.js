@@ -1,4 +1,4 @@
-//addReaction - thoughts find one and update ONLY UPDATE
+// -addReaction thoughts find one and update ONLY UPDATE
 //removeReaction - ONLY UPDATE
 const { Thought } = require('../models')
 
