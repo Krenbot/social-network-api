@@ -1,5 +1,3 @@
-// -addReaction thoughts find one and update ONLY UPDATE
-//removeReaction - ONLY UPDATE
 const { Thought } = require('../models')
 
 module.exports = {
@@ -35,4 +33,18 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    newReaction: async function (req, res) {
+        try {
+
+        } catch (err) {
+
+        }
+    },
+    deleteReaction: async function (req, res) {
+        try {
+
+        } catch (err) {
+
+        }
+    }
 }

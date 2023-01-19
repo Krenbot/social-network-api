@@ -3,28 +3,28 @@ const { User } = require('../models')
 
 module.exports = {
     //GET all users
-    find: async function (req, res) {
+    findAllUsers: async function (req, res) {
         try {
-            const users = await User.find()
-            res.json(users)
+            const result = await User.find()
+            res.json(result)
         } catch (err) {
             res.status(500).json(err)
         }
     },
     //GET a single user by _id and populated thought and friend data
-    findOne: async function (req, res) {
+    findUser: async function (req, res) {
         try {
             const user = await User
                 .findOne({ _id: req.params.id })
-                .populate('thought')
-                .populate('friend')
+                .populate('thoughts')
+                .populate('friends')
             res.json(user)
         } catch (err) {
             res.status(500).json(err)
         }
     },
     //POST a new user
-    create: async function (req, res) {
+    createUser: async function (req, res) {
         try {
             const result = await User.create(req.body)
             res.json(result)
@@ -33,7 +33,7 @@ module.exports = {
         }
     },
     //PUT to update a user by its _id
-    update: async function (req, res) {
+    updateUser: async function (req, res) {
         try {
             const user = await User.findOneAndUpdate(
                 { _id: req.params.id },
@@ -45,7 +45,7 @@ module.exports = {
         }
     },
     //DELETE to remove user by its _id
-    delete: async function (req, res) {
+    deleteUser: async function (req, res) {
         try {
             const result = await User.findByIdAndDelete(
                 { _id: req.params.id },
