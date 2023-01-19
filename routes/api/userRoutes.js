@@ -21,16 +21,8 @@ router.route('/:userId')
     .put(updateUser)
     .delete(deleteUser)
 
-// const usersController = require("../../controllers/usersController");
-
-// router.get("/", usersController.findUsers);
-
-// router.get("/:id", usersController.findUser);
-
-// router.post("/", usersController.addUser);
-
-// router.put("/update/:id", usersController.updateUser);
-
-// router.delete("/delete/:id", usersController.deleteUser);
+router.route('/:userId/friends/friendId')
+    .post(addFriend)
+    .delete(deleteFriend)
 
 module.exports = router

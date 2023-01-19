@@ -3,17 +3,27 @@
 const { Thought } = require('../models')
 
 module.exports = {
-    newThought: async function (req, res) {
+    findThoughts: async function (req, res) {
         try {
-            const result = await Thought.create(req.body)
+            const result = await Thought.find()
             res.json(result)
         } catch (err) {
             res.status(500).json(err)
         }
     },
-    findThought: async function (req, res) {
+    findOneThought(req, res) {
+        Thought.findOne({ _id: req.params.thoughtId })
+            .select("-_v")
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: "No Thought with that ID!" })
+                    : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
+    createThought: async function (req, res) {
         try {
-            const result = await Thought.find()
+            const result = await Thought.create(req.body)
             res.json(result)
         } catch (err) {
             res.status(500).json(err)
@@ -35,16 +45,18 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    //TODO: ADD
     createReaction: async function (req, res) {
         try {
-            //TODO: ADD
+
         } catch (err) {
             res.status(500).json(err)
         }
     },
+    //TODO: ADD
     deleteReaction: async function (req, res) {
         try {
-            //TODO: ADD
+
         } catch (err) {
             res.status(500).json(err)
         }

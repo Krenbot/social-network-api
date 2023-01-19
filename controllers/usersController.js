@@ -55,16 +55,18 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    //TODO: ADD
     addFriend: async function (req, res) {
         try {
-            //TODO: ADD
+
         } catch (err) {
             res.status(500).json(err)
         }
     },
+    //TODO: ADD
     deleteFriend: async function (req, res) {
         try {
-            //TODO: ADD
+
         } catch (err) {
             res.status(500).json(err)
         }
