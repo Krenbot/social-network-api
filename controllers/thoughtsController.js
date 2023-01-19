@@ -35,4 +35,18 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    createReaction: async function (req, res) {
+        try {
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+    deleteReaction: async function (req, res) {
+        try {
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
 }
