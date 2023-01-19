@@ -37,14 +37,14 @@ module.exports = {
     },
     createReaction: async function (req, res) {
         try {
-
+            //TODO: ADD
         } catch (err) {
             res.status(500).json(err)
         }
     },
     deleteReaction: async function (req, res) {
         try {
-
+            //TODO: ADD
         } catch (err) {
             res.status(500).json(err)
         }

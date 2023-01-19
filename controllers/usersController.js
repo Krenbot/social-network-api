@@ -3,7 +3,7 @@ const { User } = require('../models')
 
 module.exports = {
     //GET all users
-    findUser: async function (req, res) {
+    findUsers: async function (req, res) {
         try {
             const users = await User.find()
             res.json(users)
@@ -57,14 +57,14 @@ module.exports = {
     },
     addFriend: async function (req, res) {
         try {
-
+            //TODO: ADD
         } catch (err) {
             res.status(500).json(err)
         }
     },
     deleteFriend: async function (req, res) {
         try {
-
+            //TODO: ADD
         } catch (err) {
             res.status(500).json(err)
         }
