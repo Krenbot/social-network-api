@@ -25,7 +25,8 @@ const UserSchema = new mongoose.Schema({
 
 }, {
     //Does not display id
-    timestamps, id: false
+    timestamps: true,
+    id: false
 })
 
 UserSchema.virtual('friendCount')

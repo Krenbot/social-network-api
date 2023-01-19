@@ -3,7 +3,7 @@ const { User } = require('../models')
 
 module.exports = {
     //GET all users
-    findAllUsers: async function (req, res) {
+    findUsers: async function (req, res) {
         try {
             const result = await User.find()
             res.json(result)
@@ -12,7 +12,7 @@ module.exports = {
         }
     },
     //GET a single user by _id and populated thought and friend data
-    findUser: async function (req, res) {
+    findOneUser: async function (req, res) {
         try {
             const user = await User
                 .findOne({ _id: req.params.id })
@@ -51,6 +51,22 @@ module.exports = {
                 { _id: req.params.id },
                 req.body, { new: true })
             res.json(result, 'User deleted!')
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+    //TODO: ADD
+    addFriend: async function (req, res) {
+        try {
+
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+    //TODO: ADD
+    deleteFriend: async function (req, res) {
+        try {
+
         } catch (err) {
             res.status(500).json(err)
         }

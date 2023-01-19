@@ -1,15 +1,8 @@
 const { Thought } = require('../models')
 
 module.exports = {
-    newThought: async function (req, res) {
-        try {
-            const result = await Thought.create(req.body)
-            res.json(result)
-        } catch (err) {
-            res.status(500).json(err)
-        }
-    },
-    findThought: async function (req, res) {
+    //GET all thoughts
+    findThoughts: async function (req, res) {
         try {
             const result = await Thought.find()
             res.json(result)
@@ -17,6 +10,27 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    //GET one thought
+    findOneThought(req, res) {
+        Thought.findOne({ _id: req.params.thoughtId })
+            .select("-_v")
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: "No Thought with that ID!" })
+                    : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
+    },
+    //POST new thought
+    createThought: async function (req, res) {
+        try {
+            const result = await Thought.create(req.body)
+            res.json(result)
+        } catch (err) {
+            res.status(500).json(err)
+        }
+    },
+    //PUT to update thought by ID
     updateThought: async function (req, res) {
         try {
             const result = await Thought.findByIdAndUpdate(req.params.id, req.body, { new: true })
@@ -25,6 +39,7 @@ module.exports = {
             res.status(500).json(err)
         }
     },
+    //DELETE thought by ID
     deleteThought: async function (req, res) {
         try {
             const result = await Thought.findByIdAndDelete(req.params.id)
@@ -33,18 +48,36 @@ module.exports = {
             res.status(500).json(err)
         }
     },
-    newReaction: async function (req, res) {
+    //POST new reaction
+    createReaction: async function (req, res) {
         try {
-
+            const result = await Thought.findByIdAndUpdate({
+                _id: req.params.thoughtId
+            },
+                {
+                    $push: { reactions: req.body }
+                },
+                { new: true })
+            res.json(result)
         } catch (err) {
-
+            res.status(500).json(err)
         }
     },
+    //DELETE reaction
     deleteReaction: async function (req, res) {
         try {
-
+            const deletedReaction = await Thought.findByIdAndUpdate({
+                _id: req.params.thoughtId
+            },
+                {
+                    $pull: {
+                        reactions: { reactionId: req.params.reactionId }
+                    }
+                },
+                { new: true })
+            res.json(deletedReaction)
         } catch (err) {
-
+            res.status(500).json(err)
         }
-    }
+    },
 }
