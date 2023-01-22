@@ -12,7 +12,7 @@ module.exports = {
     },
     //GET one thought
     findOneThought(req, res) {
-        Thought.findOne({ _id: req.params.thoughtId })
+        Thought.findOne({ _id: req.params.id })
             .select("-_v")
             .then((thought) =>
                 !thought
@@ -49,10 +49,10 @@ module.exports = {
         }
     },
     //POST new reaction
-    createReaction: async function (req, res) {
+    addReaction: async function (req, res) {
         try {
             const result = await Thought.findByIdAndUpdate({
-                _id: req.params.thoughtId
+                _id: req.params.id
             },
                 {
                     $push: { reactions: req.body }
@@ -67,7 +67,7 @@ module.exports = {
     deleteReaction: async function (req, res) {
         try {
             const deletedReaction = await Thought.findByIdAndUpdate({
-                _id: req.params.thoughtId
+                _id: req.params.id
             },
                 {
                     $pull: {
