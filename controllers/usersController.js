@@ -35,11 +35,10 @@ module.exports = {
     //PUT to update a user by its _id
     updateUser: async function (req, res) {
         try {
-            const user = await User.findOneAndUpdate(
-                { _id: req.params.id },
-                //Sends updated version of information
+            const result = await User.findByIdAndUpdate(
+                req.params.id,
                 req.body, { new: true })
-            res.json(user, 'User updated!')
+            res.json(result)
         } catch (err) {
             res.status(500).json(err)
         }
@@ -47,10 +46,10 @@ module.exports = {
     //DELETE to remove user by its _id
     deleteUser: async function (req, res) {
         try {
-            const result = await User.findByIdAndDelete(
-                { _id: req.params.id },
-                req.body, { new: true })
-            res.json(result, 'User deleted!')
+            const result = await User.findByIdAndDelete(req.params.id)
+            await Thought.deleteMany(
+                { username: user.username })
+            res.json(result)
         } catch (err) {
             res.status(500).json(err)
         }
