@@ -15,18 +15,18 @@ const UserSchema = new mongoose.Schema({
         validate: [validator.isEmail, 'Please enter a valid email!']
     },
     thoughts: [{
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.ObjectId,
         ref: 'Thought'
     }],
     friends: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
     }]
 
 }, {
     //Does not display id
     timestamps: true,
-    id: false
+    // id: false
 })
 
 UserSchema.virtual('friendCount')
