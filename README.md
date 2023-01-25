@@ -5,7 +5,7 @@ MongoDB is a popular choice for many social networks due to its speed with large
 
 My challenge was to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. I used Express.js for routing, a MongoDB database, and the Mongoose ODM.
 
-No seed data is provided, so I needed to create my own data using Insomnia after I created my API.
+No seed data is provided, so I needed to create my own data using Postman after I created my API.
 
 ## Table of Contents
   1) [Technologies](#technologies-used)
